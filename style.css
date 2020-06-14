@@ -1,0 +1,64 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: linear-gradient(#e66465, #9198e5);
+}
+
+.scoreboard{
+    background-color:white;
+    width:100%;
+    padding:10px;
+    border-bottom:2px solid black;
+    position:fixed;
+    /* display:none; */
+}
+
+.container-fluid{
+    height:100%;
+    display:flex;
+    align-content: center;
+}
+
+.timer{
+    text-align:right;
+}
+
+.quiz-frame{
+    height:50vh;
+    margin:auto auto;
+    background-color:white;
+    border:purple 3px solid;
+    border-radius:10px;
+    padding:20px;
+    animation-name: open;
+    animation-duration: 1s;
+    animation-direction: normal; 
+    overflow:hidden;
+    opacity:1;
+}
+
+@keyframes open {
+    0% {
+      height:1vh;
+      opacity:0;
+    }
+    100% {
+      height:50vh;
+      opacity:1;
+    }
+  }
+
+#start-button{
+    color:white;
+    background-color:purple;
+}
+
+#start-button:hover{
+    color:white;
+    background-color:rgb(202, 0, 202)
+}
