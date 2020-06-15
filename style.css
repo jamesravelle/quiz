@@ -87,3 +87,7 @@ section{
     color:white;
     background-color:rgb(202, 0, 202)
 }
+
+.end{
+    display:none;
+}
