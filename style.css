@@ -22,8 +22,9 @@ section{
     padding:10px;
     border-bottom:2px solid black;
     position:fixed;
-    display:none;
+    opacity:0;
     margin-left:-15px;
+    display:flex;
 }
 
 .container-fluid{
@@ -37,7 +38,6 @@ section{
 }
 
 .quiz-frame{
-    
     margin:auto auto;
     background-color:white;
     border:purple 3px solid;
@@ -58,6 +58,19 @@ section{
 #start-button:hover{
     color:white;
     background-color:rgb(202, 0, 202)
+}
+
+.result{
+    background-color:white;
+    font-weight:bold;
+    font-size:18px;
+    padding:10px;
+    position:fixed;
+    width:100%;
+    bottom:0;
+    border-top:2px solid black;
+    margin-left:-15px;
+    opacity:0;
 }
 
 .answer-option{
