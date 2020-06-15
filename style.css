@@ -9,13 +9,21 @@ body {
     background: linear-gradient(#e66465, #9198e5);
 }
 
+.row{
+    margin-left:0;
+}
+
+section{
+    width:100%;
+}
 .scoreboard{
     background-color:white;
     width:100%;
     padding:10px;
     border-bottom:2px solid black;
     position:fixed;
-    /* display:none; */
+    display:none;
+    margin-left:-15px;
 }
 
 .container-fluid{
@@ -29,7 +37,7 @@ body {
 }
 
 .quiz-frame{
-    height:50vh;
+    
     margin:auto auto;
     background-color:white;
     border:purple 3px solid;
@@ -42,23 +50,27 @@ body {
     opacity:1;
 }
 
-@keyframes open {
-    0% {
-      height:1vh;
-      opacity:0;
-    }
-    100% {
-      height:50vh;
-      opacity:1;
-    }
-  }
-
 #start-button{
     color:white;
     background-color:purple;
 }
 
 #start-button:hover{
+    color:white;
+    background-color:rgb(202, 0, 202)
+}
+
+.answer-option{
+    background-color:purple;
+    border-radius:3px;
+    padding:2px 7px;
+    text-decoration:none;
+    color:white;
+    margin:10px;
+}
+
+.answer-option:hover{
+    text-decoration:none;
     color:white;
     background-color:rgb(202, 0, 202)
 }

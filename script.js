@@ -3,14 +3,18 @@ var timerEl = document.querySelector('#timer');
 var startButton = document.querySelector('#start-button');
 var quizFrame = document.querySelector('.quiz-frame');
 var highScore = document.querySelector('#highscore');
+var scoreboard = document.querySelector('.scoreboard');
+var questionText = quizFrame.querySelectorAll('h1')[0]
+var introP = quizFrame.querySelectorAll('p')[0]
+var answerText = quizFrame.querySelectorAll('div')[0]
 
 // Create objects with questions
-var quiz = {
+var quizObj = {
     question1: {
         question : "The Lord of the Rings movies are based on a novel by what author?",
         answers : [
             "J.R.R. Tolkien",
-            "J.K Rowling",
+            "J.K. Rowling",
             "J.M. Barrie",
             "H.G. Wells"
         ],
@@ -59,6 +63,7 @@ var quiz = {
 }
 
 function startTimer(){
+    scoreboard.style.display = "flex";
     var time = 10;
     timerEl.textContent = time;
         interval = setInterval(function() {
@@ -72,8 +77,39 @@ function startTimer(){
         }, 1000);
 }
 
+function setQuestion(){
+    // Clear quiz frame html
+    introP.style.display = "none";
+    startButton.style.display = "none";
+
+    // Set header to question
+    questionText.textContent = quizObj.question1.question;
+
+    // Create answer options
+    for(var i = 0; i < quizObj.question1.answers.length; i++){
+        answerOption = document.createElement('a');
+        answerOption.classList.add('btn');
+        answerOption.classList.add('col-md-5');
+        answerOption.classList.add('answer-option');
+        answerOption.setAttribute("href","#");
+        answerOption.textContent = quizObj.question1.answers[i];
+        quizFrame.append(answerOption);
+    }
+    var answerOption = document.querySelector('.answer-option')
+}
+
+// Start quiz
 startButton.addEventListener("click", function(){
     event.preventDefault();
-    startTimer();
+    // startTimer();
+    setQuestion();
+})
+
+quizFrame.addEventListener("click", function(e){
+    event.preventDefault();
+    // Test if the clicked answer matches the correct answer
+    if (e.target.classList.value.indexOf('answer-option') > 0 && e.target.innerHTML === quizObj.question1.correct){
+        alert("correct");
+    }
 })
 
