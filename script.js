@@ -221,6 +221,10 @@ function wrong(){
 
 function endQuiz(){
     // When quiz has ended
+    // Stop background music
+    audio.pause();
+    audio.currentTime = 0;
+    // Hide scoreboard and result section
     result.style.opacity = "0";
     scoreboard.style.opacity = "0";
     // Stop timer
@@ -293,6 +297,8 @@ function getScore(){
 // Start quiz button
 startButton.addEventListener("click", function(){
     event.preventDefault();  
+    var audio = new Audio('LOTR-Soundtrack.mp3');
+    audio.play();
     startTimer();
     setQuestion();
 })
