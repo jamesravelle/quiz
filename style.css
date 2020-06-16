@@ -2,13 +2,30 @@ html {
     height: 100%;
 }
 body {
+    font-family:sans-serif;
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background: linear-gradient(#e66465, #9198e5);
+    background-image:url('images/LOTR-bg.jpg');
+    background-size:cover;
 }
 
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Trade Winds', cursive;
+}
+
+@media only screen and (max-width:750px){
+    .quiz-frame{
+        padding-top:50px;
+    }
+    h1{
+        font-size:24px;
+    }
+    .scoreboard{
+        font-size:12px;
+    }
+}
 .row{
     margin-left:0;
 }
@@ -18,6 +35,7 @@ section{
 }
 
 .scoreboard{
+    font-family: 'Press Start 2P', sans-serif;
     background-color:white;
     width:100%;
     padding:0;
@@ -25,7 +43,6 @@ section{
     position:fixed;
     opacity:0;
     margin-left:-15px;
-    display:flex;
 }
 
 .scoreboard .col-6{
@@ -56,7 +73,7 @@ section{
     background-color:white;
     border:purple 3px solid;
     border-radius:10px;
-    padding:20px;
+    padding:50px 20px;
     animation-name: open;
     animation-duration: 1s;
     animation-direction: normal; 
@@ -93,7 +110,7 @@ section{
     padding:2px 7px;
     text-decoration:none;
     color:white;
-    margin:10px;
+    margin:10px 10px 10px 0;
 }
 
 .btn:hover{
@@ -104,6 +121,17 @@ section{
 
 .end{
     display:none;
+}
+
+#highscore{
+    color:purple;
+    text-decoration:none;
+}
+
+
+#highscore:hover{
+    text-decoration:none;
+    color:rgb(202, 0, 202);
 }
 
 .highscore-text{

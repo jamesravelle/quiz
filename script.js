@@ -230,13 +230,14 @@ function endQuiz(){
     endHTML += "<h2>Score: " + time +"</h2>";
     endHTML += "<p>Correct answers: " + scoreValue +" /// Incorrect answers: " + (5 - scoreValue) + "</p>";
     endHTML += "<hr>";
-    endHTML += "<p>Please enter your initials:</p>";
+    endHTML += "<p>Please enter your name:</p>";
     endHTML += "<input type='text' id='initials'>";
     endHTML += "<input type='submit' value='Submit' class='scoreSubmit'>";
     quizFrame.innerHTML = endHTML;
 }
 
 function submitScore(){
+    // Add new score to score object and add to local storage
     scoreObj.user.push(document.querySelector('#initials').value);
     scoreObj.score.push(time);
     localStorage.setItem('scoreObj', JSON.stringify(scoreObj));
@@ -244,6 +245,7 @@ function submitScore(){
 }
 
 function getScore(){
+    // Output the high scores
     // Clear HTML Frame
     quizFrame.innerHTML = "";
 
@@ -306,7 +308,12 @@ quizFrame.addEventListener("click", function(e){
     
     // Submit score button click
     if(e.target.classList.value.indexOf('scoreSubmit') !== -1){
-        submitScore();
+        if(document.querySelector('#initials').value.length === 0){
+            alert("Please enter your name");
+        } else {
+            submitScore();
+        }
+        
     }
     
     // Clear scores button click
@@ -324,6 +331,8 @@ quizFrame.addEventListener("click", function(e){
 })
 
 highscore.addEventListener("click",function(){
+    result.style.opacity = "0";
+    scoreboard.style.opacity = "0";
     clearInterval(interval);
     getScore();
 })
