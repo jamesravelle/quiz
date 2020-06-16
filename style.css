@@ -1,6 +1,7 @@
 html {
     height: 100%;
 }
+
 body {
     font-family:sans-serif;
     height: 100%;
@@ -11,21 +12,18 @@ body {
     background-size:cover;
 }
 
+a {
+    color:purple;
+}
+
+a:hover {
+    color:rgb(202, 0, 202);
+}
+
 h1,h2,h3,h4,h5,h6{
     font-family: 'Trade Winds', cursive;
 }
 
-@media only screen and (max-width:750px){
-    .quiz-frame{
-        padding-top:50px;
-    }
-    h1{
-        font-size:24px;
-    }
-    .scoreboard{
-        font-size:12px;
-    }
-}
 .row{
     margin-left:0;
 }
@@ -36,6 +34,7 @@ section{
 
 .scoreboard{
     font-family: 'Press Start 2P', sans-serif;
+    font-size:18px;
     background-color:white;
     width:100%;
     padding:0;
@@ -92,6 +91,7 @@ section{
 }
 
 .result{
+    font-family: 'Press Start 2P', sans-serif;
     background-color:white;
     font-weight:bold;
     font-size:18px;
@@ -142,3 +142,17 @@ section{
     margin:2px auto;
 }
 
+@media only screen and (max-width:750px){
+    .quiz-frame{
+        padding-top:50px;
+    }
+    h1 {
+        font-size:24px;
+    }
+    h2 {
+        font-size:20px;
+    }
+    .scoreboard, .result{
+        font-size:12px;
+    }
+}
