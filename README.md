@@ -4,4 +4,4 @@ Lord of the Rings quiz programmed using HTML, CSS, Bootstrap and Javascript.
 
 URL: [https://jamesravelle.github.io/quiz](https://jamesravelle.github.io/quiz)
 
-Screenshot: [https://jamesravelle.github.io/quiz/assets/screenshot.png](https://jamesravelle.github.io/quiz/assets/screenshot.png)
+Screenshot: [screenshot.PNG](https://raw.githubusercontent.com/jamesravelle/quiz/master/assets/screenshot.PNG)
