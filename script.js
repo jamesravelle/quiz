@@ -18,6 +18,7 @@ var answerText = quizFrame.querySelectorAll('div')[0]
 var questionPosition = 1;
 var time = 60;
 var scoreValue = 0;
+var audio = new Audio('assets/LOTR-Soundtrack.mp3');
 
 // Create objects with questions
 var quizObj = {
@@ -75,19 +76,19 @@ var quizObj = {
         var question = "";
         switch(x){
             case 1:
-                question = quizObj.question1.question;
+                question = this.question1.question;
                 break;
             case 2:
-                question = quizObj.question2.question;
+                question = this.question2.question;
                 break;
             case 3:
-                question = quizObj.question3.question;
+                question = this.question3.question;
                 break;
             case 4:
-                question = quizObj.question4.question;
+                question = this.question4.question;
                 break;
             case 5:
-                question = quizObj.question5.question;
+                question = this.question5.question;
                 break;
         }
         return question;
@@ -96,19 +97,19 @@ var quizObj = {
         var answers = "";
         switch(a){
             case 1:
-                answers = quizObj.question1.answers[b];
+                answers = this.question1.answers[b];
                 break;
             case 2:
-                answers = quizObj.question2.answers[b];
+                answers = this.question2.answers[b];
                 break;
             case 3:
-                answers = quizObj.question3.answers[b];
+                answers = this.question3.answers[b];
                 break;
             case 4:
-                answers = quizObj.question4.answers[b];
+                answers = this.question4.answers[b];
                 break;
             case 5:
-                answers = quizObj.question5.answers[b];
+                answers = this.question5.answers[b];
                 break;
         }
         return answers;
@@ -117,19 +118,19 @@ var quizObj = {
         var correctAnswers = "";
         switch(a){
             case 1:
-                correctAnswers = quizObj.question1.correct;
+                correctAnswers = this.question1.correct;
                 break;
             case 2:
-                correctAnswers = quizObj.question2.correct;
+                correctAnswers = this.question2.correct;
                 break;
             case 3:
-                correctAnswers = quizObj.question3.correct;
+                correctAnswers = this.question3.correct;
                 break;
             case 4:
-                correctAnswers = quizObj.question4.correct;
+                correctAnswers = this.question4.correct;
                 break;
             case 5:
-                correctAnswers = quizObj.question5.correct;
+                correctAnswers = this.question5.correct;
                 break;
         }
         return correctAnswers;
@@ -194,28 +195,50 @@ function setQuestion(){
 function correct(){
     // Run if a correct answer is submitted
     // Show result bar
-    result.style.opacity = "1";
-    result.textContent = "Correct :)";
-    result.style.backgroundColor = "#33FF5E";
+    showResultBar(true);
+    // Increase question position
     questionPosition++;
+
+    // Increase correct answer counter
     scoreValue++;
+
+    // Set next question
     setQuestion();
 }
 
+function showResultBar(x){
+    result.style.opacity = "1";
+    if (x){
+        // True
+        result.textContent = "Correct :)";
+        result.style.backgroundColor = "#33FF5E";
+    } else {
+        // False
+        result.textContent = "Wrong :( The correct answer was: " + quizObj.getCorrectAnswers(questionPosition);
+        result.style.backgroundColor = "#FF5333";
+    }
+    
+    if(questionPosition === 5){
+        result.classList.add('fade');
+    }
+
+}
 function wrong(){
     // Run if a wrong answer is submitted
     // Show result bar
-    result.style.opacity = "1";
-    // Output question result and correct answer
-    result.textContent = "Wrong :( The correct answer was: " + quizObj.getCorrectAnswers(questionPosition);
-    result.style.backgroundColor = "#FF5333";
+    showResultBar(false);
+
     // Reduce time
     time -= 10;
     timer.textContent = time;
+
     // Change progress bar to reflect time
     progressBar.style.width = (time * 1.6) + "%";
+
     // Increase question position
     questionPosition++;
+
+    // Set next question
     setQuestion();
 }
 
@@ -224,11 +247,13 @@ function endQuiz(){
     // Stop background music
     audio.pause();
     audio.currentTime = 0;
-    // Hide scoreboard and result section
-    result.style.opacity = "0";
+
+    // Hide scoreboard
     scoreboard.style.opacity = "0";
+
     // Stop timer
     clearInterval(interval);
+
     // Create HTML output when quiz ends
     var endHTML = "<h1>Quest completed!</h1>";
     endHTML += "<h2>Score: " + time +"</h2>";
@@ -297,14 +322,14 @@ function getScore(){
 // Start quiz button
 startButton.addEventListener("click", function(){
     event.preventDefault();  
-    var audio = new Audio('LOTR-Soundtrack.mp3');
     audio.play();
     startTimer();
     setQuestion();
 })
 
 quizFrame.addEventListener("click", function(e){
-    event.preventDefault();
+    e.preventDefault();
+    // Get button clicks in this way because they are not present when the HTML is loaded
     // Test if the clicked answer matches the correct answer
     if (e.target.classList.value.indexOf('answer-option') !== -1 && e.target.innerHTML === quizObj.getCorrectAnswers(questionPosition)){
         correct();
@@ -319,7 +344,6 @@ quizFrame.addEventListener("click", function(e){
         } else {
             submitScore();
         }
-        
     }
     
     // Clear scores button click
@@ -336,6 +360,12 @@ quizFrame.addEventListener("click", function(e){
     }
 })
 
+// Set git hub link in HTML to work (disabled)
+document.querySelector('.github-link').addEventListener("click", function(){
+    window.location.href = "https://github.com/jamesravelle/quiz";
+})
+
+// View high score link click
 highscore.addEventListener("click",function(){
     result.style.opacity = "0";
     scoreboard.style.opacity = "0";
