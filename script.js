@@ -192,20 +192,6 @@ function setQuestion(){
     }
 }
 
-function correct(){
-    // Run if a correct answer is submitted
-    // Show result bar
-    showResultBar(true);
-    // Increase question position
-    questionPosition++;
-
-    // Increase correct answer counter
-    scoreValue++;
-
-    // Set next question
-    setQuestion();
-}
-
 function showResultBar(x){
     result.style.opacity = "1";
     if (x){
@@ -223,6 +209,21 @@ function showResultBar(x){
     }
 
 }
+
+function correct(){
+    // Run if a correct answer is submitted
+    // Show result bar
+    showResultBar(true);
+    // Increase question position
+    questionPosition++;
+
+    // Increase correct answer counter
+    scoreValue++;
+
+    // Set next question
+    setQuestion();
+}
+
 function wrong(){
     // Run if a wrong answer is submitted
     // Show result bar
@@ -283,17 +284,17 @@ function getScore(){
 
     // Output high scores
     if (scoreObj.user.length !== 0){
-    for(var i = 0; i < newScoreObj.user.length; i++){
-        var highscoreString =  newScoreObj.user[i] + " - " + newScoreObj.score[i];
-        var highscoreText = document.createElement('p');
-        highscoreText.innerHTML = highscoreString;
-        highscoreText.classList.add('highscore-text');
-        quizFrame.prepend(highscoreText);
+        for(var i = 0; i < newScoreObj.user.length; i++){
+            var highscoreString =  newScoreObj.user[i] + " - " + newScoreObj.score[i];
+            var highscoreText = document.createElement('p');
+            highscoreText.innerHTML = highscoreString;
+            highscoreText.classList.add('highscore-text');
+            quizFrame.prepend(highscoreText);
+        }
+        // Add brackets next to the current user
+        var highScoreText = document.querySelectorAll('p')[0]
+        highScoreText.innerHTML = ">> " + highScoreText.innerHTML + " <<"
     }
-    // Add brackets next to the current user
-    var highScoreText = document.querySelectorAll('p')[0]
-    highScoreText.innerHTML = ">> " + highScoreText.innerHTML + " <<"
-}
     // Create header
     var highScoreHeader = document.createElement('h1');
     highScoreHeader.textContent = "High Scores: ";
