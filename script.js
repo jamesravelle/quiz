@@ -22,7 +22,7 @@ var audio = new Audio('assets/LOTR-Soundtrack.mp3');
 
 // Create objects with questions
 var quizObj = {
-    question1: {
+    "question1": {
         question : "The Lord of the Rings movies are based on a novel by what author?",
         answers : [
             "J.R.R. Tolkien",
@@ -32,7 +32,7 @@ var quizObj = {
         ],
         correct : "J.R.R. Tolkien"
     },
-    question2: {
+    "question2": {
         question : "What is the first voice we hear in The Fellowship of the Ring?",
         answers : [
             "Frodo",
@@ -42,7 +42,7 @@ var quizObj = {
         ],
         correct : "Galadriel"
     },
-    question3: {
+    "question3": {
         question : "The only way to destroy the Ring of Power is to throw it into the fires of _________?",
         answers : [
             "Mount Zion",
@@ -52,7 +52,7 @@ var quizObj = {
         ],
         correct : "Mount Doom"
     },
-    question4: {
+    "question4": {
         question : "While traveling through the mines of Moria, which member of the Fellowship of the Ring is killed by the Balrog?",
         answers : [
             "Boromir",
@@ -62,7 +62,7 @@ var quizObj = {
         ],
         correct : "Gandalf"
     },
-    question5: {
+    "question5": {
         question : "What is the name of the Ent who carries Pippin and Merry through Fangorn Forest?",
         answers : [
             "Greybranch",
@@ -73,67 +73,19 @@ var quizObj = {
         correct : "Treebeard"
     },
     getQuestion : function(x){
-        var question = "";
-        switch(x){
-            case 1:
-                question = this.question1.question;
-                break;
-            case 2:
-                question = this.question2.question;
-                break;
-            case 3:
-                question = this.question3.question;
-                break;
-            case 4:
-                question = this.question4.question;
-                break;
-            case 5:
-                question = this.question5.question;
-                break;
-        }
-        return question;
+        // Method to return question
+        var q = "question" + x;
+        return this[q].question;
     },
     getAnswers : function(a, b){
-        var answers = "";
-        switch(a){
-            case 1:
-                answers = this.question1.answers[b];
-                break;
-            case 2:
-                answers = this.question2.answers[b];
-                break;
-            case 3:
-                answers = this.question3.answers[b];
-                break;
-            case 4:
-                answers = this.question4.answers[b];
-                break;
-            case 5:
-                answers = this.question5.answers[b];
-                break;
-        }
-        return answers;
+        // Method to return answer
+        var q = "question" + a;
+        return this[q].answers[b];;
     },
-    getCorrectAnswers : function(a){
-        var correctAnswers = "";
-        switch(a){
-            case 1:
-                correctAnswers = this.question1.correct;
-                break;
-            case 2:
-                correctAnswers = this.question2.correct;
-                break;
-            case 3:
-                correctAnswers = this.question3.correct;
-                break;
-            case 4:
-                correctAnswers = this.question4.correct;
-                break;
-            case 5:
-                correctAnswers = this.question5.correct;
-                break;
-        }
-        return correctAnswers;
+    getCorrectAnswers : function(x){
+        // Method to return correct answer
+        var q = "question" + x;
+        return this[q].correct;;
     }
 };
 
@@ -299,7 +251,6 @@ function getScore(){
     var highScoreHeader = document.createElement('h1');
     highScoreHeader.textContent = "High Scores: ";
     quizFrame.prepend(highScoreHeader);
-    console.log(scoreObj.user);
 
     // Create button to replay game
     var replayLink = document.createElement('a');
@@ -330,16 +281,17 @@ startButton.addEventListener("click", function(){
 
 quizFrame.addEventListener("click", function(e){
     e.preventDefault();
-    // Get button clicks in this way because they are not present when the HTML is loaded
+    // Get button clicks in this way because they are not present when the HTML is loaded by getting the class of the button being clicked
     // Test if the clicked answer matches the correct answer
     if (e.target.classList.value.indexOf('answer-option') !== -1 && e.target.innerHTML === quizObj.getCorrectAnswers(questionPosition)){
         correct();
-    } else if (e.target.classList.value.indexOf('answer-option') > 0){
+    } else if (e.target.classList.value.indexOf('answer-option') !== -1){
         wrong();
     }
     
     // Submit score button click
     if(e.target.classList.value.indexOf('scoreSubmit') !== -1){
+        // Make sure highscore name entry is not blank
         if(document.querySelector('#initials').value.length === 0){
             alert("Please enter your name");
         } else {
@@ -355,7 +307,7 @@ quizFrame.addEventListener("click", function(e){
         getScore();
     }
 
-    // Replay button game
+    // Replay game button
     if(e.target.classList.value.indexOf('replay-link') !== -1){
         window.location.reload();
     }
