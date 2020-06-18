@@ -218,7 +218,7 @@ function endQuiz(){
     endHTML += "<hr>";
     endHTML += "<p>Please enter your name:</p>";
     endHTML += "<input type='text' id='initials'>";
-    endHTML += "<input type='submit' value='Submit' class='scoreSubmit'>";
+    endHTML += "<input type='submit' value='Submit' class='scoreSubmit btn'>";
     quizFrame.innerHTML = endHTML;
 }
 
