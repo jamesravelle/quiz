@@ -145,7 +145,10 @@ function setQuestion(){
 }
 
 function showResultBar(x){
+    // Show result bar
     result.style.opacity = "1";
+
+    // Check for correct or incorrect display
     if (x){
         // True
         result.textContent = "Correct :)";
@@ -156,6 +159,7 @@ function showResultBar(x){
         result.style.backgroundColor = "#FF5333";
     }
     
+    // Fade out last question result
     if(questionPosition === 5){
         result.classList.add('fade');
     }
